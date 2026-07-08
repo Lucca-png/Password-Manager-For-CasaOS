@@ -1,0 +1,64 @@
+{
+  "appid": "password-manager",
+  "name": "Password Manager",
+  "description": "Minimalist self-hosted password manager for CasaOS. Secure, private, and offline.",
+  "icon": "https://cdn-icons-png.flaticon.com/512/3050/3050159.png",
+  "version": "1.0.0",
+  "author": "Your Name",
+  "category": "Utilities",
+  "website": "https://github.com/yourusername/password-manager",
+  "source": "https://github.com/yourusername/password-manager",
+  "container_name": "password-manager",
+  "image": "password-manager:latest",
+  "scheme": "http",
+  "host": "localhost",
+  "port": 3000,
+  "protocol": "http",
+  "store_app_id": "password-manager",
+  "tag": "password-manager",
+  "docker_compose": "docker-compose.yml",
+  "volumes": [
+    {
+      "source": "/data/password-manager",
+      "destination": "/app/data",
+      "mode": "rw"
+    }
+  ],
+  "ports": [
+    {
+      "container": 3000,
+      "host": 3000,
+      "protocol": "tcp",
+      "description": "Frontend Port"
+    },
+    {
+      "container": 8000,
+      "host": 8000,
+      "protocol": "tcp",
+      "description": "Backend API Port"
+    }
+  ],
+  "environment": [
+    {
+      "key": "SECRET_KEY",
+      "description": "Secret key for JWT tokens",
+      "default": "change-this-secret-key"
+    },
+    {
+      "key": "DATABASE_URL",
+      "description": "Database URL",
+      "default": "sqlite:///./data/vault.db"
+    }
+  ],
+  "restart_policy": "always",
+  "privileged": false,
+  "network_mode": "bridge",
+  "hostname": "password-manager",
+  "cap_add": [],
+  "cap_drop": [],
+  "devices": [],
+  "sysctls": {},
+  "labels": {
+    "icon": "password-manager"
+  }
+}
