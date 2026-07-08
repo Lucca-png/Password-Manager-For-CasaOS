@@ -1,13 +1,13 @@
 {
   "appid": "password-manager",
   "name": "Password Manager",
-  "description": "Minimalist self-hosted password manager for CasaOS. Secure, private, and offline.",
+  "description": "Gerenciador de senhas minimalista e seguro para CasaOS. Criptografia AES-256, autenticação JWT e backup automático.",
   "icon": "https://cdn-icons-png.flaticon.com/512/3050/3050159.png",
   "version": "1.0.0",
-  "author": "Your Name",
+  "author": "Lucca Avena",
   "category": "Utilities",
-  "website": "https://github.com/yourusername/password-manager",
-  "source": "https://github.com/yourusername/password-manager",
+  "website": "https://github.com/Lucca-png/Password-Manager-For-CasaOS",
+  "source": "https://github.com/Lucca-png/Password-Manager-For-CasaOS",
   "container_name": "password-manager",
   "image": "password-manager:latest",
   "scheme": "http",
@@ -42,12 +42,22 @@
     {
       "key": "SECRET_KEY",
       "description": "Secret key for JWT tokens",
-      "default": "change-this-secret-key"
+      "default": "change-this-secret-key-in-production"
     },
     {
       "key": "DATABASE_URL",
       "description": "Database URL",
       "default": "sqlite:///./data/vault.db"
+    },
+    {
+      "key": "BACKEND_PORT",
+      "description": "Backend API port",
+      "default": "8000"
+    },
+    {
+      "key": "FRONTEND_PORT",
+      "description": "Frontend port",
+      "default": "3000"
     }
   ],
   "restart_policy": "always",
@@ -60,5 +70,16 @@
   "sysctls": {},
   "labels": {
     "icon": "password-manager"
+  },
+  "web_ui": {
+    "container_port": 3000,
+    "public": true
+  },
+  "health_check": {
+    "test": ["CMD", "curl", "-f", "http://localhost:8000/docs"],
+    "interval": 30,
+    "timeout": 10,
+    "retries": 3,
+    "start_period": 40
   }
 }
