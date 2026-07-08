@@ -1,6 +1,3 @@
-# Password-Manager-For-CasaOS
-A minimalist Password manager for CasaOS 
-
 # Minimalist Password Manager for CasaOS
 
 A private, minimalist, and 100% self-hosted password manager for home servers. Inspired by Bitwarden, 1Password, and the Apple Design System.
