@@ -8,4 +8,3 @@ cryptography
 pydantic-settings
 pydantic[email]
 python-dotenv
-sqlite
